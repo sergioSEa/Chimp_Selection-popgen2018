@@ -1,0 +1,79 @@
+
+@----------------------------------------------------------@
+|        PLINK!       |     v1.07      |   10/Aug/2009     |
+|----------------------------------------------------------|
+|  (C) 2009 Shaun Purcell, GNU General Public License, v2  |
+|----------------------------------------------------------|
+|  For documentation, citation & bug-report instructions:  |
+|        http://pngu.mgh.harvard.edu/purcell/plink/        |
+@----------------------------------------------------------@
+
+Web-based version check ( --noweb to skip )
+Recent cached web-check found... OK, v1.07 is current
+
+Writing this text to log file [ pruneddata.log ]
+Analysis started: Tue Mar  4 15:21:39 2014
+
+Options in effect:
+	--file BA2
+	--extract BA2.prune.in
+	--make-bed
+	--out pruneddata
+
+110213 (of 110213) markers to be included from [ BA2.map ]
+Warning, found 29 individuals with ambiguous sex codes
+Writing list of these individuals to [ pruneddata.nosex ]
+29 individuals read from [ BA2.ped ] 
+0 individuals with nonmissing phenotypes
+Assuming a disease phenotype (1=unaff, 2=aff, 0=miss)
+Missing phenotype value is also -9
+0 cases, 0 controls and 29 missing
+0 males, 0 females, and 29 of unspecified sex
+ *** WARNING *** DUPLICATE MARKERS FOUND *** 
+Duplicate marker name found: [ 11728960 ]
+Duplicate marker name found: [ 75065516 ]
+Duplicate marker name found: [ 41941374 ]
+Duplicate marker name found: [ 156565887 ]
+Duplicate marker name found: [ 29455225 ]
+Duplicate marker name found: [ 46803239 ]
+Duplicate marker name found: [ 117127588 ]
+Duplicate marker name found: [ 102626125 ]
+Duplicate marker name found: [ 127569344 ]
+Duplicate marker name found: [ 110457001 ]
+Duplicate marker name found: [ 131466476 ]
+Duplicate marker name found: [ 111367941 ]
+Duplicate marker name found: [ 28473503 ]
+Duplicate marker name found: [ 52548869 ]
+Duplicate marker name found: [ 1389571 ]
+Duplicate marker name found: [ 16259679 ]
+Duplicate marker name found: [ 88874624 ]
+Duplicate marker name found: [ 88874653 ]
+Duplicate marker name found: [ 4936803 ]
+Duplicate marker name found: [ 52604086 ]
+Duplicate marker name found: [ 5221243 ]
+Duplicate marker name found: [ 6147539 ]
+Duplicate marker name found: [ 19378804 ]
+Duplicate marker name found: [ 44612432 ]
+Duplicate marker name found: [ 55110715 ]
+Duplicate marker name found: [ 31760874 ]
+Duplicate marker name found: [ 43585040 ]
+Duplicate marker name found: [ 50290837 ]
+Duplicate marker name found: [ 29752539 ]
+Duplicate marker name found: [ 32459395 ]
+
+Reading list of SNPs to extract [ BA2.prune.in ] ... 46679 read
+Before frequency and genotyping pruning, there are 46673 SNPs
+29 founders and 0 non-founders found
+Total genotyping rate in remaining individuals is 0.969136
+0 SNPs failed missingness test ( GENO > 1 )
+0 SNPs failed frequency test ( MAF < 0 )
+After frequency and genotyping pruning, there are 46673 SNPs
+After filtering, 0 cases, 0 controls and 29 missing
+After filtering, 0 males, 0 females, and 29 of unspecified sex
+Writing pedigree information to [ pruneddata.fam ] 
+Writing map (extended format) information to [ pruneddata.bim ] 
+Writing genotype bitfile to [ pruneddata.bed ] 
+Using (default) SNP-major mode
+
+Analysis finished: Tue Mar  4 15:21:42 2014
+

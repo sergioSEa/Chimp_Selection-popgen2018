@@ -1,0 +1,28 @@
+PLINK v1.90p 64-bit (9 Jan 2018)
+Options in effect:
+  --file verus
+  --freq
+  --noweb
+  --out Pan_Verus
+
+Hostname: a00730.science.domain
+Working directory: /home/mjq483/exam/separate_files
+Start time: Fri Mar 16 17:43:21 2018
+
+Note: --noweb has no effect since no web check is implemented yet.
+Random number seed: 1521218601
+48123 MB RAM detected; reserving 24061 MB for main workspace.
+Scanning .ped file... done.
+Performing single-pass .bed write (46673 variants, 5 people).
+--file: Pan_Verus-temporary.bed + Pan_Verus-temporary.bim +
+Pan_Verus-temporary.fam written.
+46673 variants loaded from .bim file.
+5 people (0 males, 0 females, 5 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to Pan_Verus.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 5 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.971962.
+--freq: Allele frequencies (founders only) written to Pan_Verus.frq .
+
+End time: Fri Mar 16 17:43:22 2018

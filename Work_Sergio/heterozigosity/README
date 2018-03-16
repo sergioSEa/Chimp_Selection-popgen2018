@@ -1,0 +1,18 @@
+STEPS:
+
+1- Compute frequencies wit PLINK from the separate files
+Example:
+
+plink --noweb --file Pt_schwein --freq --out Pt_schwein
+plink --noweb --file Pt_troglo --freq --out Pt_troglo
+plink --noweb --file Pt_verus --freq --out Pt_verus
+
+2- Remove NA values from the frequences
+Example:
+
+cat Pt_schwein.frq |grep -v NA > Pt_schwein_noNA.frq
+cat Pt_troglo.frq |grep -v NA > Pt_troglo_noNA.frq
+cat Pt_verus.frq |grep -v NA > Pt_verus_noNA.frq
+
+
+3-Run Script
