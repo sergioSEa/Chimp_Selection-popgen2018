@@ -40,10 +40,10 @@ for i in range(n_windows):
     x.append(id)
     
     id += window_size
-
+fig = plt.figure(figsize=(8.0, 5.0))
 plt.plot(x,y) 
-plt.savefig('Troglo_18_het.png')
 plt.xlabel("Chromosomal Position (Mb)")
 plt.ylabel("Expected Heterozygosity")
+plt.savefig('Troglo_18_het.png')
 plt.show()
 plt.close()   
