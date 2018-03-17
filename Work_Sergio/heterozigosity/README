@@ -15,4 +15,7 @@ cat Pt_troglo.frq |grep -v NA > Pt_troglo_noNA.frq
 cat Pt_verus.frq |grep -v NA > Pt_verus_noNA.frq
 
 
-3-Run Script
+3-Run Script: compute_heterozygosity.R
+	The output is: 1-Mean heterozygosity values of the three populatiosn. 2-Heterozygosity by chromosome
+4- In order to see the heterozygosity in one chromosome using windows, extract the chromosome information from R, then use the python scripts 
+windows_for_heter.py which will output the image.

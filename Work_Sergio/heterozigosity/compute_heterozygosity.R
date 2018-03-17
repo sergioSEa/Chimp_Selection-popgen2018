@@ -67,17 +67,20 @@ lines(seq(1:22), sch, xaxt="n", col= "blue", type = "b")
 
 legend(15, 0.00008 , legend=c("Verus", "Troglodites", "Schwein"),pch=15,col= c("black","red", "blue"))
 dev.off()
-####################Second Part, go through windows and calculate heterozygosity ################################
+
+
+
+
+####################Second Part, go through windows and calculate heterozygosity ################################ Ï'll use this to fine-tune the signals observed previously
 ## Function for generating sliding windows
 slidingwindowplot <- function(mainv, xlabv, ylabv, ylimv, window.size,
 step.size,input_x_data,input_y_data)
 {
-if (window.size > step.size)
-step.positions <- seq(window.size/2 + 1, length(input_x_data)- window.size/2,
-by=step.size)
-else
-step.positions <- seq(step.size/2 + 1, length(input_x_data)- step.size,
-by=step.size)
+if (window.size > step.size){
+
+step.positions <- seq(window.size/2 + 1, length(input_x_data)- window.size/2, by=step.size)
+}else{
+step.positions <- seq(step.size/2 + 1, length(input_x_data)- step.size, by=step.size) }
 n <- length(step.positions)
 means_x <- numeric(n)
 means_y <- numeric(n)
@@ -98,31 +101,40 @@ abline(h=quantile(zz,0.925,na.rem=TRUE),col="blue")
 abline(h=mean(input_y_data))
 }
 
-pdf ("nucleotide_diversity_in_3_subspecies")
+#pdf ("nucleotide_diversity_in_3_subspecies")
 par(mfrow=c(2,2))
-windowsize<- 3000
-steps<- 100
+windowsize = 400
+steps = 100
+
 # Pan troglodytes verus
-mainvv = paste("verus pi = ",format(mean(verus$pi,na.rem=TRUE), digits=3), "SNPs =",
-length(verus$pi), "Win: ", windowsize, "Step: ", steps)
-slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")),
-ylab=expression(paste("pi")),ylimv=c(0.00,0.0016), window.size=windowsize/4,
-step.size=steps, input_x_data=verus$position/1000000,input_y_data=verus$pi)
+#mainvv = paste("verus pi = ",format(mean(verus$pi,na.rem=TRUE), digits=3), "SNPs =",
+#length(verus$pi), "Win: ", windowsize, "Step: ", steps)
+#slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")),
+#ylab=expression(paste("pi")),ylimv=c(0.00,0.0016), window.size=windowsize/4,
+#step.size=steps, input_x_data=verus$position/1000000,input_y_data=verus$pi)
 
 # Pan troglodytes schweinfurthii
-mainvv = paste("schwein pi = ",format(mean(schwein$pi,na.rem=TRUE), digits=3),"SNPs
-=", length(schwein$pi),"Win: ", windowsize, "Step: ", steps )
-slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")),
-ylab=expression(paste("pi")),ylimv=c(0.000,0.0016), window.size=windowsize,
-step.size=steps, input_x_data=schwein$position/1000000,input_y_data=schwein$pi)
+#mainvv = paste("schwein pi = ",format(mean(schwein$pi,na.rem=TRUE), digits=3),"SNPs
+#=", length(schwein$pi),"Win: ", windowsize, "Step: ", steps )
+#slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")),
+#ylab=expression(paste("pi")),ylimv=c(0.000,0.0016), window.size=windowsize,
+#step.size=steps, input_x_data=schwein$position/1000000,input_y_data=schwein$pi)
 
 # Pan troglodytes troglodytes
-mainvv = paste("troglo pi = ",format(mean(troglo$pi,na.rem=TRUE), digits=3),"SNPs
-=", length(troglo$pi),"Win: ", windowsize, "Step: ", steps )
-slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")),
-ylab=expression(paste("pi")),ylimv=c(0.00,0.0016), window.size=windowsize,
-step.size=steps, input_x_data=troglo$position/1000000,input_y_data=troglo$pi)
+#mainvv = paste("troglo pi = ",format(mean(troglo$pi,na.rem=TRUE), digits=3),"SNPs
+#=", length(troglo$pi),"Win: ", windowsize, "Step: ", steps )
+#slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")),
+#ylab=expression(paste("pi")),ylimv=c(0.00,0.0016), window.size=windowsize,
+#step.size=steps, input_x_data=troglo$position/1000000,input_y_data=troglo$pi)
 
 
+#I am doing it all with  the Python scripts
+#Interest : Troglodytes Chr 18
+#pdf("nucleotide_diversity_tro_18")
+#troglo = troglo[troglo[,"CHR"]==18,]
 
+#mainvv = paste("troglo pi = ",format(mean(troglo$pi,na.rem=TRUE), digits=3),"SNPs=", length(troglo$pi),"Win: ", windowsize, "Step: ", steps )
+
+#print(troglo)
+#slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")), ylab=expression(paste("pi")),ylimv=c(0.000045,0.000055), window.size=windowsize,step.size=steps, input_x_data=troglo$position/1000000,input_y_data=troglo$pi)
 
