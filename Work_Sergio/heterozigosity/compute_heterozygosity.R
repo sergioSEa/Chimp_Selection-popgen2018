@@ -138,3 +138,6 @@ steps = 100
 #print(troglo)
 #slidingwindowplot(mainv=mainvv, xlab=expression(paste("Position (x ", 10^6,")")), ylab=expression(paste("pi")),ylimv=c(0.000045,0.000055), window.size=windowsize,step.size=steps, input_x_data=troglo$position/1000000,input_y_data=troglo$pi)
 
+troglo = troglo[troglo[,"CHR"]==2,]
+print(troglo)
+
