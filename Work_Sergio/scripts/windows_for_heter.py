@@ -7,8 +7,9 @@ data =np.genfromtxt(sys.argv[1], dtype =None, names=('Num', 'CHR', 'SNP', 'A1', 
 end_chr = data["position"][-1] +100
 init_chr = data["position"][0] - 100
 len_chr = end_chr - init_chr
-window_size = 4000000  
-n_windows = len_chr/window_size
+window_size = 4000000 
+step = 2500000 
+n_windows = len_chr/step
 
 x = []
 y= []
@@ -37,9 +38,9 @@ for i in range(n_windows):
         elif pos > e_window:
             break 
     y.append(average(mean))
-    x.append(id)
+    x.append(id//1000000)
     
-    id += window_size
+    id += step
 fig = plt.figure(figsize=(8.0, 5.0))
 plt.plot(x,y) 
 plt.xlabel("Chromosomal Position (Mb)")
