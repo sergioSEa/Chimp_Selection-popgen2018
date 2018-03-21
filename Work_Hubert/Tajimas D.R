@@ -79,42 +79,29 @@ cal_tajima_D = function(sfs, n){
 }
 
 # for schwein group
-sch_tajima_D = rep(0, 46)
-for(i in 1:46){
-  sch_derived_AF = cal_derived_AF(schwein_data[,((i-1)*1000+1):(i*1000)])
-  sch_sfs = table(sch_derived_AF)
-  # get rid of fixed sites
-  if(names(sch_sfs[1]) == '0')
-    sch_sfs = sch_sfs[-1]
-  # get rid of SNPs with missing genotype
-  if(names(sch_sfs[length(sch_sfs)]) == '1')
-    sch_sfs = prop.table(sch_sfs[-length(sch_sfs)])
-  #sch_sfs = c(0.39, 0.19, 0.13, 0.1, 0.08, 0.06, 0.06)
-  #names(sch_sfs) = c('0.125', '0.25', '0.375', '0.5', '0.625', '0.75', '0.875')
-  sch_tajima_D[i] = cal_tajima_D(sch_sfs, 22)
+plot_tajimasD_whole_genome = function(pop_data, n, pop_name){
+  pop_tajima_D = rep(0, 46)
+  for(i in 1:46){
+    pop_derived_AF = cal_derived_AF(pop_data[,((i-1)*1000+1):(i*1000)])
+    pop_sfs = table(pop_derived_AF)
+    # get rid of fixed sites
+    if(names(pop_sfs[1]) == '0')
+      pop_sfs = pop_sfs[-1]
+    # get rid of SNPs with missing genotype
+    if(names(pop_sfs[length(pop_sfs)]) == '1')
+      pop_sfs = prop.table(pop_sfs[-length(pop_sfs)])
+    #sch_sfs = c(0.39, 0.19, 0.13, 0.1, 0.08, 0.06, 0.06)
+    #names(sch_sfs) = c('0.125', '0.25', '0.375', '0.5', '0.625', '0.75', '0.875')
+    pop_tajima_D[i] = cal_tajima_D(pop_sfs, n)
+  }
+  plot(1:46, pop_tajima_D, ylim=c(-2, 2), xlab='genome', ylab="Tajima's D", main=paste(pop_name, 'population whole genome'))
+  abline(h=0, col='red')
+  fit = lm(pop_tajima_D ~ 1)
+  abline(fit, col='blue')
 }
-plot(1:46, sch_tajima_D, ylim=c(-2, 2), xlab='genome', ylab="Tajima's D", main='Schwein population by window')
-abline(h=0, col='red')
-fit1 = lm(sch_tajima_D ~ 1)
-abline(fit1, col='blue')
 
-# for trogl group
-tro_tajima_D = rep(0, 46)
-for(i in 1:46){
-  tro_derived_AF = cal_derived_AF(trogl_data[,((i-1)*1000+1):(i*1000)])
-  tro_sfs = table(tro_derived_AF)
-  # get rid of fixed sites
-  if(names(tro_sfs[1]) == '0')
-    tro_sfs = tro_sfs[-1]
-  # get rid of SNPs with missing genotype
-  if(names(tro_sfs[length(tro_sfs)]) == '1')
-    tro_sfs = prop.table(tro_sfs[-length(tro_sfs)])
-  tro_tajima_D[i] = cal_tajima_D(tro_sfs, 24)
-}
-plot(1:46, tro_tajima_D, ylim=c(-2, 2), xlab='genome', ylab="Tajima's D", main='Trogl population by window')
-abline(h=0, col='red')
-fit2 = lm(tro_tajima_D ~ 1)
-abline(fit2, col='blue')
+plot_tajimasD_whole_genome(schwein_data, 22, 'Schwein')
+plot_tajimasD_whole_genome(trogl_data, 24, 'Trogl')
 
 
 # chromosome-wise
@@ -164,9 +151,9 @@ plot_tajimasD_within_chr = function(pop_data, n, pop_name, dots){
         pop_sfs = prop.table(pop_sfs[-length(pop_sfs)])
       pop_tajima_D[j] = cal_tajima_D(pop_sfs, n)
     }
-    title = paste(pop_name,'population within chr',i, sep='')
+    title = paste(pop_name,' population within chr',i, sep='')
     png(filename=paste("F:\\courses\\Population Genetics\\Project\\Tajima's D within chr\\", title, '.png', sep=''))
-    plot(1:dots, pop_tajima_D, ylim=c(-2, 2), xlab='genome', ylab="Tajima's D", main=title)
+    plot(1:dots, pop_tajima_D, ylim=c(-2, 2), xlab='chromosome', ylab="Tajima's D", main=title)
     abline(h=0, col='red')
     fit = lm(pop_tajima_D ~ 1)
     abline(fit, col='blue')
