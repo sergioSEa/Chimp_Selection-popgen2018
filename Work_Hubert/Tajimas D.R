@@ -164,13 +164,16 @@ plot_tajimasD_within_chr = function(pop_data, n, pop_name, dots){
         pop_sfs = prop.table(pop_sfs[-length(pop_sfs)])
       pop_tajima_D[j] = cal_tajima_D(pop_sfs, n)
     }
-    plot(1:dots, pop_tajima_D, ylim=c(-2, 2), xlab='genome', ylab="Tajima's D", main=paste(pop_name,'population within chr',i))
+    title = paste(pop_name,'population within chr',i, sep='')
+    png(filename=paste("F:\\courses\\Population Genetics\\Project\\Tajima's D within chr\\", title, '.png', sep=''))
+    plot(1:dots, pop_tajima_D, ylim=c(-2, 2), xlab='genome', ylab="Tajima's D", main=title)
     abline(h=0, col='red')
     fit = lm(pop_tajima_D ~ 1)
     abline(fit, col='blue')
+    dev.off()
   }
 }
 
-plot_tajimasD_within_chr(schwein_data, 22, 'Schwein', 10)
-plot_tajimasD_within_chr(trogl_data, 24, 'Trogl', 10)
+plot_tajimasD_within_chr(schwein_data, 22, 'Schwein', 15)
+plot_tajimasD_within_chr(trogl_data, 24, 'Trogl', 15)
 
