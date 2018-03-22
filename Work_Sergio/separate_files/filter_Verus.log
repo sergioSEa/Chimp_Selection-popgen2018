@@ -2,8 +2,8 @@ PLINK v1.90p 64-bit (9 Jan 2018)
 Options in effect:
   --bfile ../Data/pruneddata
   --double-id
-  --keep separate_files/filter_Trogl_good
-  --out separate_files/filter_Trogl
+  --keep separate_files/filter_Verus_good
+  --out separate_files/filter_Verus
   --recode
 
 Hostname: a00730.science.domain
@@ -14,15 +14,15 @@ Random number seed: 1521748819
 48123 MB RAM detected; reserving 24061 MB for main workspace.
 46673 variants loaded from .bim file.
 29 people (0 males, 0 females, 29 ambiguous) loaded from .fam.
-Ambiguous sex IDs written to separate_files/filter_Trogl.nosex .
---keep: 12 people remaining.
+Ambiguous sex IDs written to separate_files/filter_Verus.nosex .
+--keep: 6 people remaining.
 Using 1 thread (no multithreaded calculations invoked).
-Before main variant filters, 12 founders and 0 nonfounders present.
+Before main variant filters, 6 founders and 0 nonfounders present.
 Calculating allele frequencies... done.
-Total genotyping rate in remaining samples is 0.973436.
-46673 variants and 12 people pass filters and QC.
+Total genotyping rate in remaining samples is 0.970636.
+46673 variants and 6 people pass filters and QC.
 Note: No phenotypes present.
---recode ped to separate_files/filter_Trogl.ped +
-separate_files/filter_Trogl.map ... done.
+--recode ped to separate_files/filter_Verus.ped +
+separate_files/filter_Verus.map ... done.
 
 End time: Thu Mar 22 21:00:19 2018

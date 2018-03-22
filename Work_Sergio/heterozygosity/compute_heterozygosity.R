@@ -1,6 +1,7 @@
+setwd("/home/mjq483/exam/Chimp_Selection-popgen2018/Work_Sergio/heterozygosity/")
 #Load Populations Frequency files
 schwein<-read.table("Pt_schwein_noNA.frq",h=T)
-troglo = read.table("Pan_troglodytes_noNA.fr", h=T)
+troglo = read.table("Pt_troglo_noNA.frq", h=T)
 verus<-read.table("Pt_verus_noNA.frq",h=T)
 #Compute heterozygosity as 2pq, assuming H-W proportions
 het<-function(x){2*x*(1-x)}
