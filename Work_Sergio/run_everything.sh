@@ -17,4 +17,12 @@ cat heterozygosity/Pt_schwein.frq |grep -v NA > heterozygosity/Pt_schwein_noNA.f
 cat heterozygosity/Pt_troglo.frq |grep -v NA > heterozygosity/Pt_troglo_noNA.frq
 cat heterozygosity/Pt_verus.frq |grep -v NA > heterozygosity/Pt_verus_noNA.frq
 
-Rscript heterozygosity/compute_heterozygosity.R > heterozygosity/output 
+awk '$1!=23 ' heterozygosity/Pt_troglo_noNA.frq > heterozygosity/temporal_troglo ; mv heterozygosity/temporal_troglo heterozygosity/Pt_troglo_noNA.frq
+awk '$1!=23 ' heterozygosity/Pt_schwein_noNA.frq > heterozygosity/temporal_schwein ; mv heterozygosity/temporal_schwein heterozygosity/Pt_schwein_noNA.frq
+awk '$1!=23 ' heterozygosity/Pt_verus_noNA.frq > heterozygosity/temporal_verus ; mv heterozygosity/temporal_verus  heterozygosity/Pt_verus_noNA.frq
+
+Rscript heterozygosity/compute_heterozygosity_v2.R 
+
+mv heterozygosity/*.pdf ./results/
+
+

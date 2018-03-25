@@ -7,10 +7,10 @@ Options in effect:
 
 Hostname: a00730.science.domain
 Working directory: /home/mjq483/exam/Chimp_Selection-popgen2018/Work_Sergio
-Start time: Thu Mar 22 21:00:19 2018
+Start time: Sun Mar 25 11:23:11 2018
 
 Note: --noweb has no effect since no web check is implemented yet.
-Random number seed: 1521748819
+Random number seed: 1521969791
 48123 MB RAM detected; reserving 24061 MB for main workspace.
 Scanning .ped file... done.
 Performing single-pass .bed write (46673 variants, 12 people).
@@ -27,4 +27,4 @@ Total genotyping rate is 0.973436.
 --freq: Allele frequencies (founders only) written to
 heterozygosity/Pt_troglo.frq .
 
-End time: Thu Mar 22 21:00:20 2018
+End time: Sun Mar 25 11:23:12 2018
