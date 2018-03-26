@@ -45,7 +45,7 @@ pdf ("nucleotide_global_diversity.pdf")
 par(mfrow=c(1,1))
 val = c(sum(schwein$pi), sum(troglo$pi),sum(verus$pi))
 barplot(val,ylim=c(0.000,0.00015), ylab="pi", xlab="Population",
-names.arg=c("schwein","trogl","verus"))
+names.arg=c("schwein","trogl","verus"),xaxs="i",yaxs="i")
 dev.off()
 
 
@@ -68,7 +68,7 @@ for (chr in seq(1:22)){
 pdf ("chrom_diversity.pdf")
 ver = ver[2:length(ver)]
 plot(seq(1:22), ver, xaxt="n", xlab="Number of Chromosome", ylab="Expected Heterozygosity",
-   ylim=c(0.00000, 0.000015), type = "b")
+   ylim=c(0.00000, 0.000015), type = "b",xaxs="i",yaxs="i")
 #lines(seq(1:22), ver, xaxt="n", )
 axis(1, at=seq(1, 22, by= 1), las=2)
 title(main="Chromosomal Heterozygosity")
@@ -93,14 +93,17 @@ dev.off()
 #troglo = troglo[troglo[,"CHR"]==3,]
 #options(max.print=1000000)
 #print(troglo)
+pbs =read.table("PBS_interesting.txt", header =T)
 
 
 window_size = 3000000 #4000000 
 step = 1500000 #2500000
 for (chr in seq(1:22)){
     t  = troglo[troglo[,"CHR"]==chr,]
+    p = pbs[pbs[,"CHR"]==chr,]$POS/1000000
+   
     t = cbind(t, h = het(t$MAF))
-	
+		
     end_chr = t$position[length(t$position)]
     init_chr = t$position[1]
     len_chr = end_chr - init_chr
@@ -133,7 +136,8 @@ for (chr in seq(1:22)){
 }
 
 pdf(paste(toString(chr),"diversity.pdf",sep = "-"))
-plot(vector_y[2:length(vector_y)],vector[2:length(vector)], xlab="Position(MB)", ylab="Diversity", type = "b")
+plot(vector_y[2:length(vector_y)],vector[2:length(vector)], xlab="Position(MB)", ylab="Diversity", type = "b",xaxs="i",yaxs="i")
+abline(v= p, col= "red")
 title(main=paste(toString(chr),"Chromosomal Heterozygosity",sep = "-"))
 dev.off()
 
