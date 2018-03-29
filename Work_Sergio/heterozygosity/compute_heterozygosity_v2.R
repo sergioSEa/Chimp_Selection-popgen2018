@@ -96,8 +96,8 @@ dev.off()
 pbs =read.table("PBS_interesting.txt", header =T)
 
 
-window_size = 3000000 #4000000 
-step = 1500000 #2500000
+window_size = 12000 #3000000 
+step = 7000 #1500000
 for (chr in seq(1:22)){
     t  = troglo[troglo[,"CHR"]==chr,]
     p = pbs[pbs[,"CHR"]==chr,]$POS/1000000
@@ -125,8 +125,8 @@ for (chr in seq(1:22)){
       
        #print(t$position[t$position> b_window & t$position <= e_window])
 	in_window = t[t[,"position"] > b_window & t$position <= e_window,]
-	x = sum(in_window$h) / (in_window$position[length(in_window$position)] - in_window$position[1]) 
-	
+	#x = sum(in_window$h) / (in_window$position[length(in_window$position)] - in_window$position[1])
+	x = sum(in_window$h) / (e_window -b_window)
 	vector <- c(vector, x)
 	if (length(x) == 0){
 	vector  <- c(vector, 0)
@@ -136,7 +136,7 @@ for (chr in seq(1:22)){
 }
 
 pdf(paste(toString(chr),"diversity.pdf",sep = "-"))
-plot(vector_y[2:length(vector_y)],vector[2:length(vector)], xlab="Position(MB)", ylab="Diversity", type = "b",xaxs="i",yaxs="i")
+plot(vector_y[2:length(vector_y)],vector[2:length(vector)], xlab="Position(MB)", ylab="Diversity", type = "l",xaxs="i",yaxs="i")
 abline(v= p, col= "red")
 title(main=paste(toString(chr),"Chromosomal Heterozygosity",sep = "-"))
 dev.off()
