@@ -130,16 +130,28 @@ plot_tajimasD_among_chr(schwein_data, 22, 'Schwein')
 plot_tajimasD_among_chr(trogl_data, 24, 'Trogl')
 
 
+# target loci
+pbs_data = read.table('F:\\courses\\Population Genetics\\Project\\ChimpExome\\PBSrelevant.txt', header = F, sep=" ")
+pos_data = read.table('F:\\courses\\Population Genetics\\Project\\ChimpExome\\pruneddata.bim', header = F, sep="\t")
+pbs_pos = matrix(0, 50, 2)
+for(i in 1:50){
+  pos = which(pos_data == pbs_data[i,3])
+  pbs_pos[i,2] = pos[1] - 46673
+  pbs_pos[i,1] = pos_data[pbs_pos[i,2], 1]
+}
+
 # for each chromosome
 plot_tajimasD_within_chr = function(pop_data, n, pop_name, dots){
   index = c(5211,3188,2544,2038,2226,2575,1973,1618,2031,2134,2874,2387,1015,
             1465,1444,1859,2611,894,2916,1310,657,982,721)
+  pbs_tajima = c()
   loc = 1
   for(i in 1:23){
     chr_data = pop_data[,loc:(loc+index[i]-1)]
     loc = loc + index[i]
     chr_step = floor(index[i]/dots)
     pop_tajima_D = rep(0, dots)
+    pbs_points = c()
     for(j in 1:dots){
       pop_derived_AF = cal_derived_AF(chr_data[,((j-1)*chr_step+1):(j*chr_step)])
       pop_sfs = table(pop_derived_AF)
@@ -150,15 +162,32 @@ plot_tajimasD_within_chr = function(pop_data, n, pop_name, dots){
       if(names(pop_sfs[length(pop_sfs)]) == '1')
         pop_sfs = prop.table(pop_sfs[-length(pop_sfs)])
       pop_tajima_D[j] = cal_tajima_D(pop_sfs, n)
+      # label out PBS SNPs
+      pbs_chr = which(pbs_pos == i)
+      for(k in pbs_chr){
+        pos = pbs_pos[k, 2]
+        if(i > 1){
+          pos = pos - sum(index[1:i-1])
+        }
+        if(pos >= (j-1)*chr_step+1 && pos <= j*chr_step){
+          pbs_tajima = c(pbs_tajima, pop_tajima_D[j])
+          pbs_points = c(pbs_points, j)
+        }
+      }
     }
-    title = paste(pop_name,' population within chr',i, sep='')
-    png(filename=paste("F:\\courses\\Population Genetics\\Project\\Tajima's D within chr\\", title, '.png', sep=''))
-    plot(1:dots, pop_tajima_D, ylim=c(-2, 2), xlab='chromosome', ylab="Tajima's D", main=title)
-    abline(h=0, col='red')
-    fit = lm(pop_tajima_D ~ 1)
-    abline(fit, col='blue')
-    dev.off()
+    pbs_points = unique(pbs_points)
+    # plotting
+    # title = paste(pop_name,' population within chr',i, sep='')
+    # png(filename=paste("F:\\courses\\Population Genetics\\Project\\Tajima's_D_within_chr\\", title, '.png', sep=''))
+    # plot(1:dots, pop_tajima_D, ylim=c(-2, 2), xlab='chromosome', ylab="Tajima's D", main=title)
+    # abline(h=0, col='green')
+    # fit = lm(pop_tajima_D ~ 1)
+    # abline(fit, col='blue')
+    # points(pbs_points, pop_tajima_D[pbs_points], col='red')
+    # dev.off()
   }
+  new_pbs_data = cbind(pbs_data, round(pbs_tajima, digits=7))
+  write.table(new_pbs_data,"F:\\courses\\Population Genetics\\Project\\ChimpExome\\PBS_Tajima's_D.txt", quote = FALSE, row.names = FALSE, col.names = FALSE)
 }
 
 plot_tajimasD_within_chr(schwein_data, 22, 'Schwein', 15)
