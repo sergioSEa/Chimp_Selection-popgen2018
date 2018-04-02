@@ -1,0 +1,30 @@
+PLINK v1.90p 64-bit (9 Jan 2018)
+Options in effect:
+  --file separate_files/filter_Verus
+  --freq
+  --noweb
+  --out heterozygosity/Pt_verus
+
+Hostname: a00730.science.domain
+Working directory: /home/mjq483/exam/Chimp_Selection-popgen2018/Heterozygosity
+Start time: Mon Apr  2 11:11:49 2018
+
+Note: --noweb has no effect since no web check is implemented yet.
+Random number seed: 1522660309
+48123 MB RAM detected; reserving 24061 MB for main workspace.
+Scanning .ped file... done.
+Performing single-pass .bed write (46673 variants, 6 people).
+--file: heterozygosity/Pt_verus-temporary.bed +
+heterozygosity/Pt_verus-temporary.bim + heterozygosity/Pt_verus-temporary.fam
+written.
+46673 variants loaded from .bim file.
+6 people (0 males, 0 females, 6 ambiguous) loaded from .fam.
+Ambiguous sex IDs written to heterozygosity/Pt_verus.nosex .
+Using 1 thread (no multithreaded calculations invoked).
+Before main variant filters, 6 founders and 0 nonfounders present.
+Calculating allele frequencies... done.
+Total genotyping rate is 0.970636.
+--freq: Allele frequencies (founders only) written to
+heterozygosity/Pt_verus.frq .
+
+End time: Mon Apr  2 11:11:49 2018
